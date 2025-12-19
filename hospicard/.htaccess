@@ -1,0 +1,22 @@
+# .htaccess - Coloque na raiz do projeto
+
+# Habilitar exibição de erros (REMOVER EM PRODUÇÃO)
+php_flag display_errors on
+php_value error_reporting E_ALL
+
+# Permitir CORS
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
+
+# Rewrite Engine
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    
+    # Permitir acesso aos arquivos da API
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+</IfModule>

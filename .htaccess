@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Não reescreve se for um arquivo ou diretório existente
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  
+  # Exceção para a pasta /api - deixa passar as requisições PHP
+  RewriteCond %{REQUEST_URI} !^/api/ [NC]
+
+  # Redireciona tudo para index.html (para o React Router funcionar)
+  RewriteRule ^ index.html [QSA,L]
+</IfModule>
